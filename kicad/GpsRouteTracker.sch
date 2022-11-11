@@ -1,0 +1,538 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title "GpsRouteTracker"
+Date "2021-01-08"
+Rev "2.0.0"
+Comp "Riegelbauer"
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L GpsRouteTracker-rescue:Lolin32-symbols U1
+U 1 1 5FDF99D4
+P 2700 3550
+F 0 "U1" H 2950 4747 60  0000 C CNN
+F 1 "Lolin32" H 2950 4641 60  0000 C CNN
+F 2 "Lolin32:Lolin32" H 2550 3400 60  0001 C CNN
+F 3 "" H 2550 3400 60  0001 C CNN
+	1    2700 3550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3700 4300 4100 4300
+Connection ~ 4100 4300
+Wire Wire Line
+	1400 4100 1400 5000
+$Comp
+L power:+5V #PWR0102
+U 1 1 5FDFFC93
+P 1100 1350
+F 0 "#PWR0102" H 1100 1200 50  0001 C CNN
+F 1 "+5V" H 1115 1523 50  0000 C CNN
+F 2 "" H 1100 1350 50  0001 C CNN
+F 3 "" H 1100 1350 50  0001 C CNN
+	1    1100 1350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1100 4000 2200 4000
+$Comp
+L Regulator_Linear:LM1117-3.3 U2
+U 1 1 5FE08150
+P 3200 1450
+F 0 "U2" H 3200 1692 50  0000 C CNN
+F 1 "LM1117-3.3" H 3200 1601 50  0000 C CNN
+F 2 "Package_TO_SOT_THT:TO-220F-3_Vertical" H 3200 1450 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/lm1117.pdf" H 3200 1450 50  0001 C CNN
+	1    3200 1450
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR0103
+U 1 1 5FE0B9C2
+P 3850 900
+F 0 "#PWR0103" H 3850 750 50  0001 C CNN
+F 1 "+3.3V" H 3865 1073 50  0000 C CNN
+F 2 "" H 3850 900 50  0001 C CNN
+F 3 "" H 3850 900 50  0001 C CNN
+	1    3850 900 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3850 1450 3850 900 
+$Comp
+L Connector:Conn_01x07_Male J5
+U 1 1 5FE067CA
+P 5550 4000
+F 0 "J5" H 5522 3932 50  0000 R CNN
+F 1 "OLED" H 5522 4023 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x07_P2.54mm_Vertical" H 5550 4000 50  0001 C CNN
+F 3 "~" H 5550 4000 50  0001 C CNN
+	1    5550 4000
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	3850 1450 5050 1450
+Wire Wire Line
+	5050 1450 5050 1950
+Wire Wire Line
+	3700 4000 4400 4000
+Wire Wire Line
+	3700 3900 4350 3900
+Wire Wire Line
+	4100 4300 4100 5450
+$Comp
+L Device:R R1
+U 1 1 5FDFCF8F
+P 1900 2150
+F 0 "R1" V 1900 2100 50  0000 L CNN
+F 1 "R 1K" V 1900 2350 50  0000 L CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical" V 1830 2150 50  0001 C CNN
+F 3 "~" H 1900 2150 50  0001 C CNN
+	1    1900 2150
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	2200 3400 1700 3400
+Wire Wire Line
+	1600 5000 1400 5000
+Connection ~ 1400 5000
+Wire Wire Line
+	1400 5000 1400 5450
+Wire Wire Line
+	1800 5000 1800 4750
+$Comp
+L Device:R R4
+U 1 1 5FE37804
+P 1850 4400
+F 0 "R4" H 1780 4354 50  0000 R CNN
+F 1 "R" H 1780 4445 50  0000 R CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical" V 1780 4400 50  0001 C CNN
+F 3 "~" H 1850 4400 50  0001 C CNN
+	1    1850 4400
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	2200 3200 1700 3200
+Wire Wire Line
+	2200 3300 1600 3300
+$Comp
+L Device:R R3
+U 1 1 5FE585A7
+P 1900 2450
+F 0 "R3" V 1900 2400 50  0000 L CNN
+F 1 "R 1K" V 1900 2650 50  0000 L CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical" V 1830 2450 50  0001 C CNN
+F 3 "~" H 1900 2450 50  0001 C CNN
+	1    1900 2450
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	2200 2800 1500 2800
+$Comp
+L Device:R R2
+U 1 1 5FE5CC72
+P 1900 2300
+F 0 "R2" V 1900 2250 50  0000 L CNN
+F 1 "R 1K" V 1900 2500 50  0000 L CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical" V 1830 2300 50  0001 C CNN
+F 3 "~" H 1900 2300 50  0001 C CNN
+	1    1900 2300
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3900 2750 3900 3400
+Wire Wire Line
+	3900 3400 3700 3400
+Wire Wire Line
+	4850 2850 4850 3600
+Wire Wire Line
+	4850 3600 3700 3600
+Wire Wire Line
+	3700 3500 4900 3500
+Wire Wire Line
+	4900 3500 4900 2950
+Wire Wire Line
+	3700 3700 3950 3700
+Wire Wire Line
+	5050 1950 5050 3150
+Connection ~ 5050 1950
+Wire Wire Line
+	5350 3800 4100 3800
+Connection ~ 4100 3800
+Wire Wire Line
+	4100 3800 4100 4300
+Wire Wire Line
+	2200 3100 2150 3100
+Wire Wire Line
+	2150 3100 2150 4600
+Wire Wire Line
+	2150 4600 4550 4600
+Wire Wire Line
+	4550 4600 4550 4300
+Wire Wire Line
+	4550 4300 5350 4300
+Wire Wire Line
+	4850 3600 4850 4000
+Wire Wire Line
+	4850 4000 5350 4000
+Connection ~ 4850 3600
+Wire Wire Line
+	4900 3500 4900 3900
+Wire Wire Line
+	4900 3900 5350 3900
+Connection ~ 4900 3500
+Wire Wire Line
+	2200 3000 2100 3000
+Wire Wire Line
+	2100 3000 2100 4650
+Wire Wire Line
+	2100 4650 4600 4650
+Wire Wire Line
+	4600 4650 4600 4200
+Wire Wire Line
+	4600 4200 5350 4200
+Wire Wire Line
+	5350 3700 5050 3700
+Wire Wire Line
+	5050 3700 5050 3150
+NoConn ~ 2200 2700
+NoConn ~ 2200 3500
+NoConn ~ 2200 3600
+NoConn ~ 2200 3700
+NoConn ~ 2200 3800
+NoConn ~ 2200 3900
+NoConn ~ 3700 4200
+NoConn ~ 3700 4400
+NoConn ~ 3700 4500
+NoConn ~ 3700 3800
+NoConn ~ 3700 2700
+NoConn ~ 3700 2800
+NoConn ~ 3700 2900
+NoConn ~ 3700 3000
+NoConn ~ 3700 3100
+Connection ~ 5050 3150
+Wire Wire Line
+	3950 3700 3950 3050
+Wire Wire Line
+	4100 3300 4100 3800
+Connection ~ 4100 3300
+Wire Wire Line
+	3700 3300 4100 3300
+Wire Wire Line
+	3700 3200 4100 3200
+Wire Wire Line
+	4100 3200 4100 3300
+Connection ~ 4100 3200
+Wire Wire Line
+	4100 2650 4100 3200
+Connection ~ 4100 2650
+Wire Wire Line
+	4100 2600 4100 2650
+Wire Wire Line
+	3700 2600 4100 2600
+Connection ~ 4100 1750
+Wire Wire Line
+	4100 1750 4100 1650
+Connection ~ 4100 2600
+Wire Wire Line
+	4100 1750 4100 2600
+$Comp
+L Connector:Conn_01x05_Male J6
+U 1 1 5FE37A62
+P 1600 1850
+F 0 "J6" V 1662 2094 50  0000 L CNN
+F 1 "Buttons" V 1753 2094 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical" H 1600 1850 50  0001 C CNN
+F 3 "~" H 1600 1850 50  0001 C CNN
+	1    1600 1850
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1400 4100 2200 4100
+$Comp
+L Device:R R5
+U 1 1 5FE6AB6F
+P 1900 2600
+F 0 "R5" V 1900 2600 50  0000 C CNN
+F 1 "R 1K" V 2000 2600 50  0000 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical" V 1830 2600 50  0001 C CNN
+F 3 "~" H 1900 2600 50  0001 C CNN
+	1    1900 2600
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	2200 2900 1400 2900
+$Comp
+L Connector:Conn_01x03_Male J2
+U 1 1 5FE30F31
+P 1700 5200
+F 0 "J2" V 1854 5012 50  0000 R CNN
+F 1 "OneWire" V 1763 5012 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 1700 5200 50  0001 C CNN
+F 3 "~" H 1700 5200 50  0001 C CNN
+	1    1700 5200
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	2000 2600 2050 2600
+Wire Wire Line
+	2050 2600 2050 2450
+Connection ~ 2050 2600
+Wire Wire Line
+	2050 2600 2200 2600
+Connection ~ 2050 2450
+Wire Wire Line
+	2050 2450 2050 2300
+Wire Wire Line
+	2050 2300 2050 2150
+Connection ~ 2050 2300
+Wire Wire Line
+	2050 4750 1800 4750
+Wire Wire Line
+	1700 3400 1700 4550
+Wire Wire Line
+	1700 4550 1850 4550
+Connection ~ 1700 4550
+Wire Wire Line
+	1700 4550 1700 5000
+Wire Wire Line
+	2050 4250 1850 4250
+Wire Wire Line
+	2050 4250 2050 4750
+Wire Wire Line
+	1700 2050 1700 2150
+Wire Wire Line
+	1600 2050 1600 2300
+Wire Wire Line
+	1500 2050 1500 2450
+Wire Wire Line
+	1400 2050 1400 2600
+Wire Wire Line
+	1750 2150 1700 2150
+Connection ~ 1700 2150
+Wire Wire Line
+	1700 2150 1700 3200
+Wire Wire Line
+	1750 2300 1600 2300
+Connection ~ 1600 2300
+Wire Wire Line
+	1600 2300 1600 3300
+Wire Wire Line
+	1750 2450 1500 2450
+Connection ~ 1500 2450
+Wire Wire Line
+	1500 2450 1500 2800
+Wire Wire Line
+	1750 2600 1400 2600
+Connection ~ 1400 2600
+Wire Wire Line
+	1400 2600 1400 2900
+Wire Wire Line
+	2050 2600 2050 4250
+Connection ~ 2050 4250
+Text Label 3850 4000 0    50   ~ 0
+RX
+Text Label 3850 3900 0    50   ~ 0
+TX
+Text Label 2100 2600 0    50   ~ 0
+3.3V
+Text Label 3700 3400 0    50   ~ 0
+MISO
+Text Label 3700 3500 0    50   ~ 0
+MOSI
+Text Label 3700 3700 0    50   ~ 0
+SD-CS
+Text Label 1800 3200 0    50   ~ 0
+B1
+Text Label 1800 3300 0    50   ~ 0
+B2
+Text Label 1800 2800 0    50   ~ 0
+B3
+Text Label 1800 2900 0    50   ~ 0
+B4
+Text Label 4650 4100 0    50   ~ 0
+OLED-CS
+Text Label 4650 4300 0    50   ~ 0
+OLED-RST
+Text Label 4650 4200 0    50   ~ 0
+OLED-DC
+Text Label 3700 3600 0    50   ~ 0
+CLK
+Wire Wire Line
+	1800 2050 2200 2050
+Wire Wire Line
+	4400 4000 4400 1850
+Wire Wire Line
+	4350 1750 4350 3900
+Wire Wire Line
+	4100 1650 4450 1650
+$Comp
+L Connector:Conn_01x04_Male J3
+U 1 1 5FE0CF7F
+P 5400 1750
+F 0 "J3" H 5508 2031 50  0000 C CNN
+F 1 "GPS" H 5508 1940 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical" H 5400 1750 50  0001 C CNN
+F 3 "~" H 5400 1750 50  0001 C CNN
+	1    5400 1750
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	5050 1950 5200 1950
+Wire Wire Line
+	4400 1850 5200 1850
+Wire Wire Line
+	4350 1750 5200 1750
+Wire Wire Line
+	5050 3150 5200 3150
+Wire Wire Line
+	3950 3050 5200 3050
+Wire Wire Line
+	4900 2950 5200 2950
+Wire Wire Line
+	5200 2850 4850 2850
+Wire Wire Line
+	5200 2750 3900 2750
+Wire Wire Line
+	5200 2650 4100 2650
+$Comp
+L Connector:Conn_01x06_Male J4
+U 1 1 5FE050B1
+P 5400 2850
+F 0 "J4" H 5372 2732 50  0000 R CNN
+F 1 "SD" H 5372 2823 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical" H 5400 2850 50  0001 C CNN
+F 3 "~" H 5400 2850 50  0001 C CNN
+	1    5400 2850
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	3700 4100 5350 4100
+Wire Wire Line
+	3200 1750 4100 1750
+Wire Wire Line
+	2200 2050 2200 1750
+Connection ~ 3200 1750
+Wire Wire Line
+	2200 1750 3200 1750
+$Comp
+L power:+12V #PWR0104
+U 1 1 5FFBA648
+P 1100 850
+F 0 "#PWR0104" H 1100 700 50  0001 C CNN
+F 1 "+12V" H 1115 1023 50  0000 C CNN
+F 2 "" H 1100 850 50  0001 C CNN
+F 3 "" H 1100 850 50  0001 C CNN
+	1    1100 850 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3500 1450 3850 1450
+Connection ~ 3850 1450
+$Comp
+L Converter_DCDC:OKI-78SR-5_1.5-W36-C U3
+U 1 1 5FFE83B6
+P 2200 850
+F 0 "U3" H 2200 1092 50  0000 C CNN
+F 1 "OKI-78SR-5_1.5-W36-C" H 2200 1001 50  0000 C CNN
+F 2 "Converter_DCDC:Converter_DCDC_muRata_OKI-78SR_Vertical" H 2250 600 50  0001 L CIN
+F 3 "https://power.murata.com/data/power/oki-78sr.pdf" H 2200 850 50  0001 C CNN
+	1    2200 850 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1100 1350 1100 1450
+Connection ~ 1100 1450
+Wire Wire Line
+	1100 1450 1100 4000
+Wire Wire Line
+	1100 1450 2650 1450
+Wire Wire Line
+	1100 850  1450 850 
+Wire Wire Line
+	2500 850  2650 850 
+Wire Wire Line
+	2650 850  2650 1450
+Connection ~ 2650 1450
+Wire Wire Line
+	2650 1450 2900 1450
+Wire Wire Line
+	1400 5450 4100 5450
+$Comp
+L power:GND #PWR0101
+U 1 1 5FF94A5C
+P 4450 850
+F 0 "#PWR0101" H 4450 600 50  0001 C CNN
+F 1 "GND" H 4455 677 50  0000 C CNN
+F 2 "" H 4450 850 50  0001 C CNN
+F 3 "" H 4450 850 50  0001 C CNN
+	1    4450 850 
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	4450 850  4450 1650
+Connection ~ 4450 1650
+Wire Wire Line
+	4450 1650 5200 1650
+$Comp
+L power:PWR_FLAG #FLG0101
+U 1 1 5FFA9CAE
+P 1450 750
+F 0 "#FLG0101" H 1450 825 50  0001 C CNN
+F 1 "PWR_FLAG" H 1450 923 50  0000 C CNN
+F 2 "" H 1450 750 50  0001 C CNN
+F 3 "~" H 1450 750 50  0001 C CNN
+	1    1450 750 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1450 750  1450 850 
+Connection ~ 1450 850 
+Wire Wire Line
+	1450 850  1900 850 
+Wire Wire Line
+	2200 1150 2200 1250
+Connection ~ 2200 1750
+$Comp
+L power:PWR_FLAG #FLG0102
+U 1 1 5FFB320A
+P 2400 1350
+F 0 "#FLG0102" H 2400 1425 50  0001 C CNN
+F 1 "PWR_FLAG" H 2400 1523 50  0000 C CNN
+F 2 "" H 2400 1350 50  0001 C CNN
+F 3 "~" H 2400 1350 50  0001 C CNN
+	1    2400 1350
+	1    0    0    -1  
+$EndComp
+Connection ~ 2200 1350
+Wire Wire Line
+	2200 1350 2200 1750
+Wire Wire Line
+	2200 1350 2400 1350
+$Comp
+L Connector:Conn_01x02_Male J1
+U 1 1 5FFD769A
+P 1700 1250
+F 0 "J1" H 1673 1132 50  0000 R CNN
+F 1 "Power" H 1673 1223 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 1700 1250 50  0001 C CNN
+F 3 "~" H 1700 1250 50  0001 C CNN
+	1    1700 1250
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	1900 1250 2200 1250
+Connection ~ 2200 1250
+Wire Wire Line
+	2200 1250 2200 1350
+Wire Wire Line
+	1900 1150 1900 850 
+Connection ~ 1900 850 
+$EndSCHEMATC
