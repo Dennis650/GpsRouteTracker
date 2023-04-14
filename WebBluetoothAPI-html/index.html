@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>GosRouteTracker</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #92a3b9;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav div.title {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #576c88;
+  color: white;
+}
+
+.topnav a.connect {
+  background-color: #B22222;
+}
+
+.topnav a.hidden {
+  display: none;
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 33%;
+  padding: 0 10px;
+}
+
+.row {
+  margin: 20px 20px;
+  //visibility: hidden;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media only screen and (max-width: 1000px)  {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 8px;
+  text-align: left;
+  background-color: #f1f1f1;
+}
+.card-label {
+    font-weight: bold;
+}
+
+.grid-container {
+  display:  grid;
+  grid-template-columns:  auto auto;
+  gap: 10px;
+  padding: 10px;
+}
+
+.grid-container-form {
+  display:  grid;
+  grid-template-columns: auto;
+  gap: 10px;
+  padding: 10px;
+}
+
+.button {
+  background: none;
+  outline: inherit;
+  background-color: 	#576c88;
+  border: none;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.button-cancel {
+     background-color: #999999;
+}
+
+.button-hidden {
+    display: none;
+}
+
+<!-- Form -->
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+input:disabled {
+  background: #dddddd;
+}
+
+.footer {
+  padding: 10px 10px;
+  width: 100%;
+  background-color: #92a3b9;
+  color: white;
+  text-align: left;
+}
+</style>
+
+</head>
+<body id="GpsRouteTrackerPage">
+
+<div class="topnav">
+  <div class="title">GpsRouteTracker</div>
+  <a id="connect" class="active connect">connect with tracker</a>
+  <a id="disconnect" class="hidden">disconnect</a>
+</div>
+
+<div id="datagrid" class="row">
+
+  <div class="column">
+    <div class="card">
+        <h2>GPS data</h2>
+        <hr>
+        <div class="grid-container">
+            <div class="card-label">satellites</div>  
+            <div id="satellites"></div>
+            <div class="card-label">time</div>  
+            <div id="time"></div>
+            <div class="card-label">date</div>  
+            <div id="date"></div>
+            <div class="card-label">lon</div>  
+            <div id="lon"></div>
+            <div class="card-label">lat</div>  
+            <div id="lat"></div>
+            <div class="card-label">alt</div>  
+            <div id="alt"></div>
+            <div class="card-label">speed</div>  
+            <div id="speed"></div>
+            <div class="card-label">Google Maps</div>  
+            <div id="googlemaps"></div>
+        </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <h2>config</h2>
+      <hr>
+            <h3>home</h3>
+            
+            <div class="grid-container-form">
+                 <div class="form-label">latitude</div>  
+                <input type="number" id="home_latitude" name="home_latitude" title="home_latitude" placeholder="latitude" disabled="true">
+                        
+                <div class="form-label">longitude</div>  
+                <input type="number" id="home_longitude" name="home_longitude" title="home_longitude" placeholder="longitude" disabled="true">
+
+                <div id="googlemaps_home"></div>
+
+                <div>
+                  <button id="popup_osmand_home" class="button-hidden" onclick="getOsmAndLocationHome()">get from osmand</button>
+                  <button id="popup_googlemaps_coordinates_home" class="button-hidden" onclick="getGoogleCoordinatesHome()">get from google maps coorinates</button>
+                  <button id="popup_googlemaps_home" class="button-hidden" onclick="getGoogleMapsLocationHome()">get from google maps link</button>
+                </div>
+            </div>
+
+            <h3>Destination</h3>
+            
+            <div class="grid-container-form">
+                 <div class="form-label">latitude</div>  
+                <input type="number" id="destination_latitude" name="destination_latitude" title="destination_latitude" placeholder="latitude" disabled="true">
+                        
+                <div class="form-label">longitude</div>  
+                <input type="number" id="destination_longitude" name="destination_longitude" title="destination_longitude" placeholder="longitude" disabled="true">
+
+                <div id="googlemaps_destination"></div>
+
+                <div>
+                  <button id="popup_osmand_destination" class="button-hidden" onclick="getOsmAndLocationDestination()">get from osmand</button>
+                  <button id="popup_googlemaps_coordinates_destination" class="button-hidden" onclick="getGoogleCoordinatesDestination()">get from google maps coorinates</button>
+                  <button id="popup_googlemaps_destination" class="button-hidden" onclick="getGoogleMapsLocationDestination()">get from google maps link</button>
+                </div>
+            </div>
+         
+           <button id="save" class="button-hidden" onClick="saveConfig()">save</button>
+           <button id="cancel" class="button-hidden button-cancel" onClick="cancelConfig()">cancel</button>
+           <button id="edit" class="button" onClick="editConfig()">edit</button>
+     </div>   
+  </div>
+</div>
+  
+<div id="log-output">Log output:</div>
+
+<div class="footer">
+  <p>GpsRouteTracker v0.0.2</p>
+</div>
+
+</body>
+</html>
+
+<script>
+  var logEnabled = false;
+
+  var deviceName = 'GpsRouteTracker'
+  var bleService = 'f5596d9c-c1fb-11ec-9d64-0242ac120003'
+  var bluetoothDeviceDetected
+  var characteristicGpsDataUUID = '08aa70bc-c1fc-11ec-9d64-0242ac120003'
+  var gattCharacteristicGpsData
+  var characteristicConfigDataUUID = '278127ce-c1fc-11ec-9d64-0242ac120003'
+  var gattCharacteristicConfigData
+
+  var jsonConfigData;
+
+  document.querySelector('#connect').addEventListener('click', function() {
+    if (isWebBluetoothEnabled()) { connect() }
+  })
+
+  document.querySelector('#disconnect').addEventListener('click', function() {
+    if (isWebBluetoothEnabled()) { disconnect() }
+  })
+  
+  if (!logEnabled) {
+    document.querySelector('#log-output').style.visibility = 'hidden';
+  }
+  
+  function isWebBluetoothEnabled() {
+    if (!navigator.bluetooth) {
+      Log('Web Bluetooth API is not available in this browser!')
+      return false
+    }
+
+    return true
+  }
+
+  function getDeviceInfo() {
+    let options = {
+      optionalServices: [bleService],
+      acceptAllDevices: true
+    }
+
+    Log('Requesting any Bluetooth Device...')
+    return navigator.bluetooth.requestDevice(options).then(device => {
+      bluetoothDeviceDetected = device
+    }).catch(error => {
+      Log('Argh! ' + error)
+    })
+  }
+
+function connect() {
+    return (bluetoothDeviceDetected ? Promise.resolve() : getDeviceInfo())
+    .then(connectGATT)
+    .then(_ => {
+      document.querySelector('#datagrid').style.visibility = 'visible';
+      
+      document.querySelector('#disconnect').classList.add('active');
+      document.querySelector('#disconnect').classList.remove('hidden');
+      
+      document.querySelector('#connect').classList.add('hidden');
+      document.querySelector('#connect').classList.remove('active');
+    })
+    .catch(error => {
+      Log('Waiting to start reading: ' + error)
+    })
+  }
+
+function disconnect() {
+    Log('disconnect...')
+
+    if (bluetoothDeviceDetected.gatt.connected) {
+        bluetoothDeviceDetected.gatt.disconnect();
+    }
+    bluetoothDeviceDetected = undefined;
+    document.querySelector('#datagrid').style.visibility = 'hidden';
+    
+    document.querySelector('#disconnect').classList.add('hidden');
+    document.querySelector('#disconnect').classList.remove('active');
+    
+    document.querySelector('#connect').classList.add('active');
+    document.querySelector('#connect').classList.remove('hidden');
+}
+
+  function connectGATT() {
+    if (bluetoothDeviceDetected.gatt.connected && gattCharacteristicGpsData) {
+      return Promise.resolve()
+    }
+
+    return bluetoothDeviceDetected.gatt.connect()
+    .then(server => {
+      Log('Getting GATT Service...')
+      return server.getPrimaryService(bleService)
+    })
+    .then(service => {
+      Log('Getting GATT CharacteristicGpsData...')
+      service.getCharacteristic(characteristicGpsDataUUID).then(
+        characteristic => {
+        gattCharacteristicGpsData = characteristic
+        gattCharacteristicGpsData.addEventListener('characteristicvaluechanged',
+          handleChangedValueGpsData)
+        Log('handleChangedValueGpsData added!');
+        gattCharacteristicGpsData.startNotifications()
+            .then(_ => {
+                Log('Start reading GpsData...')
+            })
+            .catch(error => {
+                Log('[ERROR] Start: ' + error)
+            })
+        }
+      )
+      Log('Getting GATT CharacteristicConfigData...')
+      service.getCharacteristic(characteristicConfigDataUUID).then(
+        characteristic => {
+        gattCharacteristicConfigData = characteristic
+        readConfig();        }
+      )
+    })
+  }
+
+  function handleChangedValueGpsData(event) {
+    let decoder = new TextDecoder('utf-8');
+    let value = decoder.decode(event.target.value);
+
+    const json = JSON.parse(value);
+    
+    document.querySelector('#satellites').innerHTML = json.satellites
+    document.querySelector('#time').innerHTML = json.time
+    document.querySelector('#date').innerHTML = json.date
+    document.querySelector('#lon').innerHTML = json.lon
+    document.querySelector('#lat').innerHTML = json.lat
+    document.querySelector('#alt').innerHTML = json.alt
+    document.querySelector('#speed').innerHTML = json.speed
+    
+    document.querySelector('#googlemaps').innerHTML = "<a target='_blank' href='https://www.google.com/maps/place/" +  json.lat + "," +  json.lon + "'>current position</a>";
+  }
+
+  function readConfig() { 
+      gattCharacteristicConfigData.readValue()
+      .then(value => {
+        const decoder = new TextDecoder('utf-8');
+        let jsonString = decoder.decode(value);
+    
+        jsonConfigData = JSON.parse(jsonString);
+        
+        document.querySelector('#home_latitude').value = jsonConfigData.home_latitude
+        document.querySelector('#home_longitude').value = jsonConfigData.home_longitude
+        document.querySelector('#destination_latitude').value = jsonConfigData.destination_latitude
+        document.querySelector('#destination_longitude').value = jsonConfigData.destination_longitude
+
+        document.querySelector('#googlemaps_home').innerHTML = "<a target='_blank' href='https://www.google.com/maps/place/" +  jsonConfigData.home_latitude + "," +  jsonConfigData.home_longitude + "'>home</a>";
+        document.querySelector('#googlemaps_destination').innerHTML = "<a target='_blank' href='https://www.google.com/maps/place/" +  jsonConfigData.destination_latitude + "," +  jsonConfigData.destination_longitude + "'>destination</a>";
+      })
+  }
+
+  function editConfig() {
+    document.querySelector('#home_latitude').disabled = false;
+    document.querySelector('#home_longitude').disabled = false;
+    document.querySelector('#destination_latitude').disabled = false;
+    document.querySelector('#destination_longitude').disabled = false;
+
+    document.querySelector('#googlemaps_home').classList.add('button-hidden');
+    document.querySelector('#googlemaps_destination').classList.add('button-hidden');
+                  
+    document.querySelector('#edit').classList.add('button-hidden');
+    document.querySelector('#edit').classList.remove('button');
+    
+    document.querySelector('#save').classList.add('button');
+    document.querySelector('#save').classList.remove('button-hidden');
+    
+    document.querySelector('#cancel').classList.add('button');
+    document.querySelector('#cancel').classList.remove('button-hidden');
+
+    document.querySelector('#popup_googlemaps_home').classList.add('button');
+    document.querySelector('#popup_googlemaps_home').classList.remove('button-hidden');
+    document.querySelector('#popup_googlemaps_coordinates_destination').classList.add('button');
+    document.querySelector('#popup_googlemaps_coordinates_destination').classList.remove('button-hidden');
+    document.querySelector('#popup_googlemaps_destination').classList.add('button');
+    document.querySelector('#popup_googlemaps_destination').classList.remove('button-hidden');
+    
+    document.querySelector('#popup_osmand_home').classList.add('button');
+    document.querySelector('#popup_osmand_home').classList.remove('button-hidden');
+    document.querySelector('#popup_googlemaps_coordinates_home').classList.add('button');
+    document.querySelector('#popup_googlemaps_coordinates_home').classList.remove('button-hidden');
+    document.querySelector('#popup_osmand_destination').classList.add('button');
+    document.querySelector('#popup_osmand_destination').classList.remove('button-hidden');
+}
+
+function cancelConfig() {
+   document.querySelector('#home_latitude').disabled = true;
+   document.querySelector('#home_longitude').disabled = true;
+   document.querySelector('#destination_latitude').disabled = true;
+   document.querySelector('#destination_longitude').disabled = true;
+
+   document.querySelector('#googlemaps_home').classList.remove('button-hidden');
+   document.querySelector('#googlemaps_destination').classList.remove('button-hidden');
+
+   document.querySelector('#edit').classList.add('button');
+   document.querySelector('#edit').classList.remove('button-hidden');
+    
+   document.querySelector('#save').classList.add('button-hidden');
+   document.querySelector('#save').classList.remove('button');
+   
+   document.querySelector('#cancel').classList.add('button-hidden');
+   document.querySelector('#cancel').classList.remove('button');
+
+   document.querySelector('#popup_googlemaps_home').classList.add('button-hidden');
+   document.querySelector('#popup_googlemaps_home').classList.remove('button');
+   document.querySelector('#popup_googlemaps_coordinates_destination').classList.add('button-hidden');
+   document.querySelector('#popup_googlemaps_coordinates_destination').classList.remove('button');
+   document.querySelector('#popup_googlemaps_destination').classList.add('button-hidden');
+   document.querySelector('#popup_googlemaps_destination').classList.remove('button');
+
+   document.querySelector('#popup_osmand_home').classList.add('button-hidden');
+   document.querySelector('#popup_osmand_home').classList.remove('button');
+   document.querySelector('#popup_googlemaps_coordinates_home').classList.add('button-hidden');
+   document.querySelector('#popup_googlemaps_coordinates_home').classList.remove('button');
+   document.querySelector('#popup_osmand_destination').classList.add('button-hidden');
+   document.querySelector('#popup_osmand_destination').classList.remove('button');
+
+   document.querySelector('#home_latitude').value = jsonConfigData.home_latitude
+   document.querySelector('#home_longitude').value = jsonConfigData.home_longitude
+   document.querySelector('#destination_latitude').value = jsonConfigData.destination_latitude
+   document.querySelector('#destination_longitude').value = jsonConfigData.destination_longitude
+
+}
+
+async function saveConfig() {
+   document.querySelector('#home_latitude').disabled = true;
+   document.querySelector('#home_longitude').disabled = true;
+   document.querySelector('#destination_latitude').disabled = true;
+   document.querySelector('#destination_longitude').disabled = true;
+
+   document.querySelector('#googlemaps_home').classList.remove('button-hidden');
+   document.querySelector('#googlemaps_destination').classList.remove('button-hidden');
+
+   document.querySelector('#edit').classList.add('button');
+   document.querySelector('#edit').classList.remove('button-hidden');
+    
+   document.querySelector('#save').classList.add('button-hidden');
+   document.querySelector('#save').classList.remove('button');
+   
+   document.querySelector('#cancel').classList.add('button-hidden');
+   document.querySelector('#cancel').classList.remove('button');
+
+   document.querySelector('#popup_googlemaps_home').classList.add('button-hidden');
+   document.querySelector('#popup_googlemaps_home').classList.remove('button');
+   document.querySelector('#popup_googlemaps_coordinates_destination').classList.add('button-hidden');
+   document.querySelector('#popup_googlemaps_coordinates_destination').classList.remove('button');
+   document.querySelector('#popup_googlemaps_destination').classList.add('button-hidden');
+   document.querySelector('#popup_googlemaps_destination').classList.remove('button');
+
+   document.querySelector('#popup_osmand_home').classList.add('button-hidden');
+   document.querySelector('#popup_osmand_home').classList.remove('button');
+   document.querySelector('#popup_googlemaps_coordinates_home').classList.add('button-hidden');
+   document.querySelector('#popup_googlemaps_coordinates_home').classList.remove('button');
+   document.querySelector('#popup_osmand_destination').classList.add('button-hidden');
+   document.querySelector('#popup_osmand_destination').classList.remove('button');
+
+  jsonConfigData.home_latitude =  document.querySelector('#home_latitude').value;
+  jsonConfigData.home_longitude =  document.querySelector('#home_longitude').value;
+  jsonConfigData.destination_latitude =  document.querySelector('#destination_latitude').value;
+  jsonConfigData.destination_longitude =  document.querySelector('#destination_longitude').value;
+
+  document.querySelector('#googlemaps_home').innerHTML = "<a target='_blank' href='https://www.google.com/maps/place/" +  jsonConfigData.home_latitude + "," +  jsonConfigData.home_longitude + "'>home</a>";
+  document.querySelector('#googlemaps_destination').innerHTML = "<a target='_blank' href='https://www.google.com/maps/place/" +  jsonConfigData.destination_latitude + "," +  jsonConfigData.destination_longitude + "'>destination</a>";
+
+  jsonString = JSON.stringify(jsonConfigData);
+ 
+  try {
+    let encoder = new TextEncoder('utf-8');
+    await gattCharacteristicConfigData.writeValue(encoder.encode(jsonString));
+  } catch(error) {
+    Log('Argh! ' + error);
+  }
+}
+  
+ function Log(msg){
+      if (logEnabled) {
+        document.querySelector('#log-output').innerHTML =
+                  document.querySelector('#log-output').innerHTML + "<br>" + msg
+      }
+  }
+
+  function getGoogleMapsLocationHome() {
+  let lat;
+  let long;
+  let url = prompt("Please enter a google maps link to home:");
+  if (url != null && url != "") {
+    url = url.substring(url.indexOf("@") + 1);
+
+    lat = url.substring(0, url.indexOf(","));
+    url = url.substring(url.indexOf(",") + 1);
+    lon = url.substring(0, url.indexOf(","));
+
+    document.querySelector('#home_latitude').value = lat
+    document.querySelector('#home_longitude').value = lon
+  }
+}
+
+function getGoogleMapsLocationDestination() {
+  let lat;
+  let long;
+  let url = prompt("Please enter a google maps link to destination:");
+  if (url != null && url != "") {
+    url = url.substring(url.indexOf("@") + 1);
+
+    lat = url.substring(0, url.indexOf(","));
+    url = url.substring(url.indexOf(",") + 1);
+    lon = url.substring(0, url.indexOf(","));
+
+    document.querySelector('#destination_latitude').value = lat
+    document.querySelector('#destination_longitude').value = lon
+  }
+}
+
+function getOsmAndLocationHome() {
+  let lat;
+  let long;
+  let info = prompt("Please enter a osmand info to home:");
+  if (info != null && info != "") {
+    info = info.substring(info.indexOf("geo:") + 4);
+
+    lat = info.substring(0, info.indexOf(","));
+    info = info.substring(info.indexOf(",") + 1);
+    lon = info.substring(0, info.indexOf("?"));
+
+    document.querySelector('#home_latitude').value = lat
+    document.querySelector('#home_longitude').value = lon
+  }
+}
+
+function getOsmAndLocationDestination() {
+  let lat;
+  let long;
+  let url = prompt("Please enter a osmand info to destination:");
+  if (url != null && url != "") {
+    url = url.substring(url.indexOf("geo:") + 4);
+
+    lat = url.substring(0, url.indexOf(","));
+    url = url.substring(url.indexOf(",") + 1);
+    lon = url.substring(0, url.indexOf("?"));
+
+    document.querySelector('#destination_latitude').value = lat
+    document.querySelector('#destination_longitude').value = lon
+  }
+}
+
+function getGoogleCoordinatesHome() {
+  let lat;
+  let long;
+  let coordinates = prompt("Please enter google coordinates to home:");
+  if (coordinates != null && coordinates != "") {
+    coordinates = coordinates.substring(coordinates.indexOf("(") + 1);
+
+    lat = coordinates.substring(0, coordinates.indexOf(","));
+    coordinates = coordinates.substring(coordinates.indexOf(", ") + 2);
+    lon = coordinates.substring(0, coordinates.indexOf(")"));
+
+    document.querySelector('#home_latitude').value = lat
+    document.querySelector('#home_longitude').value = lon
+  }
+}
+
+function getGoogleCoordinatesDestination() {
+  let lat;
+  let long;
+  let coordinates = prompt("Please enter google coordinates to destination:");
+  if (coordinates != null && coordinates != "") {
+    coordinates = coordinates.substring(coordinates.indexOf("(") + 1);
+
+    lat = coordinates.substring(0, coordinates.indexOf(","));
+    coordinates = coordinates.substring(coordinates.indexOf(", ") + 2);
+    lon = coordinates.substring(0, coordinates.indexOf(")"));
+
+    document.querySelector('#destination_latitude').value = lat
+    document.querySelector('#destination_longitude').value = lon
+  }
+}
+
+</script>
+
+

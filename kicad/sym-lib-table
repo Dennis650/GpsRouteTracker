@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name GpsRouteTracker-rescue)(type Legacy)(uri ${KIPRJMOD}/GpsRouteTracker-rescue.lib)(options "")(descr ""))
+)

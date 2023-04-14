@@ -1,0 +1,11 @@
+.DS_Store
+.travis.yml
+.pio
+.vscode
+GpsRouteTracker.code-workspace
+include/bikes/AfricaTwin/bike_secure.h.secure
+include/bikes/DR650/bike_secure.h.secure
+include/bikes/Prototyp/bike_secure.h.secure
+src/secure/secure.h.secure
+src/coordinates/coordinates.h.secure
+include/bikes/My*/*
