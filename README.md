@@ -3,6 +3,8 @@
 ## Build status
 [![PlatformIO CI](https://github.com/Dennis650/GpsRouteTracker/actions/workflows/push.yaml/badge.svg)](https://github.com/Dennis650/GpsRouteTracker/actions/workflows/push.yaml)
 
+[![PlatformIO Dependabot](https://github.com/Dennis650/GpsRouteTracker/actions/workflows/dependabot.yml/badge.svg)](https://github.com/Dennis650/GpsRouteTracker/actions/workflows/dependabot.yml)
+
 ## Important
 
 !!!EXPERIMENTAL SOFTWARE!!!
