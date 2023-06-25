@@ -3,7 +3,7 @@
 
 #include <Arduino.h>
 
-const String version = "0.0.73";
-const String versionDate = "14.04.2023";
+const String version = "0.0.74";
+const String versionDate = "25.06.2023";
 
 #endif
