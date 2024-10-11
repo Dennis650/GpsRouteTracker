@@ -10,7 +10,7 @@
 #include <TrackerGps.h>
 #include <Distances.h>
 #include <TrackerSD.h>
-#include <ble.h> 
+//#include <ble.h> 
 #include <ScreenBoot.h>
 //#include <ANCS_functions.h>
 
@@ -37,8 +37,8 @@ void setup()
 
     wifiSetup();
  
-    setupBle();
-}
+    //setupBle();
+ }
 
 void testmode() {
     distances.addDistance(50);
@@ -66,7 +66,7 @@ void loop()
     handleWebClient();
     handleArduinoOTA();
     loopWifiConnect();
-    loopBle();
+    //loopBle();
     
     trackerGps.readSerialGPS();
 

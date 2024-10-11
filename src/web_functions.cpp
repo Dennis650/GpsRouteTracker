@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include <WiFi.h>
-#include <WiFiClient.h>
+#include <WiFiClientSecure.h>
 #include <WiFiAP.h>
 #include <WebServer.h>
 #include <ESPmDNS.h>
@@ -19,10 +19,10 @@ const char *host = "tracker";
 
 WebServer server(80);
 
-WiFiClient wifiClient;
+WiFiClientSecure wifiClient;
 bool firstWifiConnect = true;
 
-const char* urlNewGpxFile = "http://192.168.0.101:14000/api/newgpxfile";
+const char* urlNewGpxFile = "https://192.168.0.101:14000/app/rest/gpxfiles";
 
 
 void handleIndex()
@@ -192,6 +192,7 @@ void sendFiles2Http() {
         message += "\"";
         message += "}";
 
+        wifiClient.setInsecure();
         
         HTTPClient httpClient;
     
