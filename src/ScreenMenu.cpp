@@ -2,6 +2,7 @@
 #include "ScreenMenu.h"
 #include "sd_functions.h"
 #include "web_functions.h"
+#include <WiFi.h>
 
 String ScreenMenu::getScreenName() {
     return SCREEN_MENU;
@@ -29,6 +30,17 @@ void ScreenMenu::drawMenu()
     y_position = 12;
     u8g2.setFont(u8g2_font_helvB12_tf);
     u8g2.drawStr(0, y_position, "Menu");
+
+    if(strcmp(trackerConfig.wlanMode, "CLIENT") == 0) {
+        if (WiFi.status() == WL_CONNECTED) {
+            u8g2.setFont(u8g2_font_helvR08_tf);
+            u8g2.drawStr(0, 128, "WLAN connected");
+        } else {
+                        u8g2.setFont(u8g2_font_helvR08_tf);
+            u8g2.drawStr(0, 128, "WLAN not connected");
+        }
+    }
+
     u8g2.drawLine(0, 15, 127, 15);
     y_position += 5;
 

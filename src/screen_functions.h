@@ -12,7 +12,7 @@ void nextScreen();
 void previousScreen();
 
 void messageWaypointSaved();
-void showMessageScreen(char* message);
+void showMessageScreen(char* messageRow1, char* messageRow2);
 
 String getCurrentScreenName();
 

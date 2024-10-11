@@ -108,20 +108,21 @@ void previousScreen(){
     }
 }
 
-void showMessageScreen(char* message)
+void showMessageScreen(char* messageRow1, char* messageRow2)
 {
     if (show_screen_messages_startetd_at==0) 
     {
         show_screen_messages_startetd_at = millis();
     }
-    screenMessage.setMessage(message);
+    screenMessage.setMessage(messageRow1, messageRow2);
     screenMessage.drawScreen();
 }
 
 void messageWaypointSaved()
 {
-    char message[15] = "Waypoint saved";
-    showMessageScreen(message);
+    char messageRow1[15] = "Waypoint saved";
+    char messageRow2[15] = "";
+    showMessageScreen(messageRow1, messageRow2);
 }
 
 void screenLoop()

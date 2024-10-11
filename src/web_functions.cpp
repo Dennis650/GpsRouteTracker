@@ -13,6 +13,7 @@
 #include <global_vars.h>
 #include <version.h>
 #include <sd_functions.h>
+#include <screen_functions.h>
 #include <TrackerSD.h>
 
 const char *host = "tracker";
@@ -81,6 +82,10 @@ bool handleDownload(String uri)
     Serial.print("->");
     Serial.println(filename);
 
+    char message[22] = "gets downloaded";
+    char* fileNameAsChar =  (char*)filename.c_str();
+    showMessageScreen(message, fileNameAsChar);
+
     File32 file = getTrackerSD()->getSd().open(filename, O_READ);
     if (!file)
     {
@@ -111,6 +116,10 @@ void handleDelete()
     String filename = server.arg(0);
     Serial.println("handleFileDelete: " + filename);
     
+    char message[22] = "gets deleted";
+    char* fileNameAsChar =  (char*)filename.c_str();
+    showMessageScreen(message, fileNameAsChar);
+
     File32 file = getTrackerSD()->getSd().open(filename, O_READ);
     if (!file)
     {
@@ -162,6 +171,9 @@ void sendFiles2Http() {
     while (fileInPath.openNext(&root, O_RDONLY))
     {
         fileInPath.getName(filename, 13);
+
+        char messageRow1[15] = "send file:";
+        showMessageScreen(messageRow1, filename);
 
         Serial.print(filename);
         Serial.print(" -> ");

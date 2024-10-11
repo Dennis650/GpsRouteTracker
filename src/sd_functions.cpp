@@ -43,8 +43,9 @@ void loadDistances()
     // Deserialize the JSON document
     DeserializationError error = deserializeJson(doc, file);
     if (error) {
-        char message[20] = "Failed to read file";
-        showMessageScreen(message);
+        char messageRow1[20] = "Failed to read file";
+        char messageRow2[20] = "";
+        showMessageScreen(messageRow1, messageRow2);
         Serial.println(F("Failed to read file Distances"));
     } else {
         distances.setOdo(doc["distanceODO"]);
@@ -70,8 +71,9 @@ void saveDistances()
     if (!file)
     {
         Serial.println(F("Failed to create file"));
-        char message[22] = "Failed to create file";
-        showMessageScreen(message);
+        char messageRow1[22] = "Failed to create file";
+        char messageRow2[20] = "";
+        showMessageScreen(messageRow1, messageRow2);
         return;
     }
 
@@ -91,8 +93,10 @@ void saveDistances()
     // Serialize JSON to file
     if (serializeJson(doc, file) == 0)
     {
-        char message[24] = "Failed to write to file";
-        showMessageScreen(message);
+        char messageRow1[24] = "Failed to write to file";
+        char messageRow2[20] = "";
+        showMessageScreen(messageRow1, messageRow2);
+        
         Serial.println(F("Failed to write to file"));
     }
     else
@@ -117,8 +121,11 @@ void saveTrackerConfig()
     if (!file)
     {
         Serial.println(F("Failed to create file"));
-        char message[22] = "Failed to create file";
-        showMessageScreen(message);
+        
+        char messageRow1[22] = "Failed to create file";
+        char messageRow2[20] = "";
+        showMessageScreen(messageRow1, messageRow2);
+        
         return;
     }
 
@@ -151,8 +158,11 @@ void saveTrackerConfig()
     if (serializeJson(doc, file) == 0)
     {
         Serial.println(F("Failed to write to file"));
-        char message[24] = "Failed to write to file";
-        showMessageScreen(message);
+        
+        char messageRow1[24] = "Failed to write to file";
+        char messageRow2[20] = "";
+        showMessageScreen(messageRow1, messageRow2);
+        
     }
     else
     {
@@ -286,9 +296,10 @@ void trackPostionLoop()
         {
             Serial.println("Failed to read file GPX");
             
-            char message[20] = "Failed to read file";
-            showMessageScreen(message);
-
+            char messageRow1[20] = "Failed to read file";
+            char messageRow2[20] = "";
+            showMessageScreen(messageRow1, messageRow2);
+            
             getTrackerSD()->getSd().errorPrint(&Serial);
             Serial.println(getTrackerSD()->getSd().sdErrorCode());
             Serial.println(getTrackerSD()->getSd().sdErrorData());
@@ -366,8 +377,10 @@ void trackWaypoint()
     if (!file)
     {
         Serial.println("Fehler beim Oeffnen der Datei");
-        char message[20] = "Failed to read file";
-        showMessageScreen(message);
+        char messageRow1[20] = "Failed to read file";
+        char messageRow2[20] = "";
+        showMessageScreen(messageRow1, messageRow2);
+        
         getTrackerSD()->getSd().errorPrint(&Serial);
         Serial.println(getTrackerSD()->getSd().sdErrorCode());
         Serial.println(getTrackerSD()->getSd().sdErrorData());
@@ -461,8 +474,11 @@ void saveLapTimerData()
     if (!file)
     {
         Serial.println(F("Failed to create file"));
-        char message[22] = "Failed to create file";
-        showMessageScreen(message);
+        
+        char messageRow1[22] = "Failed to create file";
+        char messageRow2[20] = "";
+        showMessageScreen(messageRow1, messageRow2);
+        
         return;
     }
 
@@ -481,8 +497,11 @@ void saveLapTimerData()
     if (serializeJson(doc, file) == 0)
     {
         Serial.println(F("Failed to write to file"));
-        char message[24] = "Failed to write to file";
-        showMessageScreen(message);
+        
+        char messageRow1[24] = "Failed to write to file";
+        char messageRow2[20] = "";
+        showMessageScreen(messageRow1, messageRow2);
+
     }
     else
     {

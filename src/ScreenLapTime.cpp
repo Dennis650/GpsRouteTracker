@@ -88,8 +88,9 @@ bool ScreenLapTime::handleButtonUpLong()
     lap.setStartFinishLatitude(gpsData.latitude);
     lap.setStartFinishLongitude(gpsData.longitude);
 
-    char message[16] = "StartFinish set";
-    showMessageScreen(message);
+    char messageRow1[16] = "StartFinish set";
+    char messageRow2[16] = "";
+    showMessageScreen(messageRow1, messageRow2);
 
     saveLapTimerData();
 

@@ -18,10 +18,11 @@ public:
    virtual void handleButtonSelectShort();
    virtual bool handleButtonSelectLong();
 
-   void setMessage(char* message);
+   void setMessage(char* messageRow1, char* messageRow2);
 
 private: 
-   char* _message;
+   char* _messageRow1;
+   char* _messageRow2;
 };
 
 #endif

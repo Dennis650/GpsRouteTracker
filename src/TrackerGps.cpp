@@ -162,8 +162,9 @@ void TrackerGps::gpsFetchDataAndCalcDistances()
     if (millis() > 10000 && _tinyGpsPlus.charsProcessed() < 10)
     {
         Serial.println(F("No GPS data received: check wiring"));
-        char message[17] = "GPS wiring error";
-        showMessageScreen(message);
+        char messageRow1[17] = "GPS wiring error";
+        char messageRow2[17] = "";
+        showMessageScreen(messageRow1, messageRow2);
 
         gpsData.wiringError = true;
     }
