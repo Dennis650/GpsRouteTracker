@@ -69,4 +69,5 @@ You can edit or ad you own bike to platformio/include/bikes. Copy a existing bik
 
 ## Cases / 3D-Print
 
-TODO
+https://www.thingiverse.com/thing:6894891
+
